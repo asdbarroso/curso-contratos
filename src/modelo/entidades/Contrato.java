@@ -1,25 +1,32 @@
 package modelo.entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Contrato {
 
 	private Integer numero;
 	private Date data;
 	private Double valorTotal;
+	private Integer quotas;
 	
-	private Parcelas parcels;
+	private List<Parcelas> parcelas = new ArrayList();
 	
 	public Contrato() {
 		
 	}
 
-	public Contrato(Integer numero, Date data, Double valorTotal, Parcelas parcels) {
+
+
+	public Contrato(Integer numero, Date data, Double valorTotal, Integer quotas) {
 		this.numero = numero;
 		this.data = data;
 		this.valorTotal = valorTotal;
-		this.parcels = parcels;
+		this.quotas = quotas;
 	}
+
+
 
 	public Integer getNumero() {
 		return numero;
@@ -45,12 +52,26 @@ public class Contrato {
 		this.valorTotal = valorTotal;
 	}
 
-	public Parcelas getParcels() {
-		return parcels;
+	public List<Parcelas> getParcelas() {
+		return parcelas;
 	}
 
-	public void setParcels(Parcelas parcels) {
-		this.parcels = parcels;
+	public void setParcelas(List<Parcelas> parcelas) {
+		this.parcelas = parcelas;
 	}
+
+
+
+	public Integer getQuotas() {
+		return quotas;
+	}
+
+
+
+	public void setQuotas(Integer quotas) {
+		this.quotas = quotas;
+	}
+	
+	
 	
 }
