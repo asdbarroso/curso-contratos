@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import modelo.entidades.Contrato;
 import modelo.servicos.ServicoContratos;
+import modelo.servicos.ServicoPagamentoPaypal;
 
 public class Programa {
 
@@ -28,13 +29,13 @@ public class Programa {
 		System.out.print("Valor do Contrato: R$ ");
 		double valorTotal = sc.nextDouble();
 		System.out.print("Numero de Parcelas: ");
-		int quotas = sc.nextInt();
+		int meses = sc.nextInt();
 
-		Contrato contrato = new Contrato(numero, data, valorTotal, quotas);
+		Contrato contrato = new Contrato(numero, data, valorTotal);
 
 		System.out.println("Parcelas:");
-		ServicoContratos servicoContrato = new ServicoContratos();
-		servicoContrato.processaContrato(contrato);
+		ServicoContratos servicoContrato = new ServicoContratos(new ServicoPagamentoPaypal());
+		servicoContrato.processaContrato(contrato, meses);
 		
 		for(int i=0; i < contrato.getParcelas().size(); i++) {
 			System.out.print(contrato.getParcelas().get(i));
