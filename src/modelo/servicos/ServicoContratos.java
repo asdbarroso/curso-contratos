@@ -1,8 +1,8 @@
 package modelo.servicos;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import modelo.entidades.Contrato;
@@ -10,27 +10,25 @@ import modelo.entidades.Parcelas;
 
 public class ServicoContratos {
 	private ServicoPagamentoPaypal servicoPagamentoPaypal;
-	private List<Parcelas> parcelas = new ArrayList<>();
 
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	Calendar cal = Calendar.getInstance();
-	
+
 	public void processaContrato(Contrato contrato) {
 		double valorParcela = contrato.getValorTotal() / contrato.getQuotas();
 		cal.setTime(contrato.getData());
 
-		List<Parcelas> parc = new ArrayList<Parcelas>();
+		List<Parcelas> parc = new ArrayList<>();
 
+		servicoPagamentoPaypal = new ServicoPagamentoPaypal();
 		for (int i = 1; i <= contrato.getQuotas(); i++) {
-
-			cal.add(Calendar.DAY_OF_MONTH, 30);
-			Date vencimento = cal.getTime();
-
-			parc.add(new Parcelas(vencimento, servicoPagamentoPaypal.processaParcelas(valorParcela, i)));
-
-			cal.setTime(vencimento);
+			cal.add(Calendar.MONTH, 1);
+			contrato.setData(cal.getTime());
+			parc.add(new Parcelas(contrato.getData(), servicoPagamentoPaypal.processaParcelas(valorParcela, i)));
 		}
 
 		contrato.setParcelas(parc);
+		
 	}
-
+	
 }

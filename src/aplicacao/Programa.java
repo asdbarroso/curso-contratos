@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 import modelo.entidades.Contrato;
 import modelo.servicos.ServicoContratos;
-import modelo.servicos.ServicoPagamentoPaypal;
 
 public class Programa {
 
@@ -36,11 +35,10 @@ public class Programa {
 		System.out.println("Parcelas:");
 		ServicoContratos servicoContrato = new ServicoContratos();
 		servicoContrato.processaContrato(contrato);
-
-		System.out.println();
 		
-		System.out.println(contrato.getParcelas());
-
+		for(int i=0; i < contrato.getParcelas().size(); i++) {
+			System.out.print(contrato.getParcelas().get(i));
+		}
 		sc.close();
 
 	}

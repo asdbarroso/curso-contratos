@@ -10,14 +10,12 @@ public class Contrato {
 	private Date data;
 	private Double valorTotal;
 	private Integer quotas;
-	
-	private List<Parcelas> parcelas = new ArrayList();
-	
+
+	private List<Parcelas> parcelas = new ArrayList<>();
+
 	public Contrato() {
-		
+
 	}
-
-
 
 	public Contrato(Integer numero, Date data, Double valorTotal, Integer quotas) {
 		this.numero = numero;
@@ -25,8 +23,6 @@ public class Contrato {
 		this.valorTotal = valorTotal;
 		this.quotas = quotas;
 	}
-
-
 
 	public Integer getNumero() {
 		return numero;
@@ -60,18 +56,11 @@ public class Contrato {
 		this.parcelas = parcelas;
 	}
 
-
-
 	public Integer getQuotas() {
 		return quotas;
 	}
 
-
-
 	public void setQuotas(Integer quotas) {
 		this.quotas = quotas;
 	}
-	
-	
-	
 }
